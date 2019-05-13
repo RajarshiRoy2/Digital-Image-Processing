@@ -1,4 +1,4 @@
-# Computer-Vision
-Computer vision online video editor
+# Digital Image Processing
+Image tracking in videos with server
 
-This program allows you to upload videos and pictures and edit it with filters as needed. It uses port 8080 and runs a Nodejs server. 
+This program allows you to upload videos and then uses Harris Corner Dectection and Lucas Kanade tracking algorithm to track key points across video frames and returns a zip file with the results. 
