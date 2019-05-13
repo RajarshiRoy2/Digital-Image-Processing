@@ -1,0 +1,75 @@
+<html>
+<head>
+<div ng-app="myApp" ng-controller="myCtrl">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+
+  <div style="margin:100px;">
+    <div class="jumbotron"  style="padding:40px;">
+	<p>3D Image Modelling</p>
+<br>Be sure that the file of the same name is not there in same folder. This takes a long time to finish. 
+	 
+	  	  <form action="fileupload" method="post" enctype="multipart/form-data">
+		  <input  type="file" name="filetoupload"><br>
+		  <input  type="submit">
+		  <form>
+		  <br>
+
+		   <p><a class="btn btn-primary btn-lg" ng-click="download2()" href="#" role="button">Download file</a></p>
+		   
+		   
+    </div>
+  </div>
+</body>
+</html>	
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http) {
+
+$scope.right = function(){
+$http.get('/fileupload').then(function(res){
+console.log(res.data)
+				});
+console.log("see git")
+		}	
+		
+$scope.download2 = function(){
+var ip=""
+$http.get('/ip').then(function(res){
+ip=res.data;
+var location2="http://"+ip+":8080/download"
+console.log(location2)
+location.replace(location2)
+				});
+
+}
+
+$scope.option = function(){
+
+    var val;
+    // get list of radio buttons with specified name
+    var radios = [document.getElementById("gender"),document.getElementById("gender2"),document.getElementById("gender3"),document.getElementById("gender4"),document.getElementById("gender5"),document.getElementById("gender6"),document.getElementById("gender7")];
+    // loop through list of radio buttons
+    for (var i=0, len=radios.length; i<len; i++) {
+        if ( radios[i].checked ) { // radio checked?
+            val = radios[i].value; // if so, hold its value in val
+            break; // and break out of for loop
+        }
+    }
+    console.log(val)
+	var k={'value':val}
+$http.post('/option',k).then(function(res){
+console.log(res.data)
+				});
+}
+
+	
+});
+</script>
